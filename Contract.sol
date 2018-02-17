@@ -2,6 +2,11 @@ pragma solidity ^0.4.19;
 
 contract StormBurst {
 
+
+    
+  // Here will lie the future of decentralization
+    mapping (string => )
+    
 	//Bob
 	struct submission {
 		string title;
@@ -13,4 +18,5 @@ contract StormBurst {
 	
 	//Bob
 	function _createLink() {};
+
 }
