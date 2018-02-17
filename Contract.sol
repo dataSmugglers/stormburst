@@ -4,30 +4,34 @@ contract StormBurst {
 
 
     
-  // Here will lie the future of decentralization
-    mapping (string => )
+	// Here will lie the future of decentralization
+    mapping (string => Submission) get_submission;
     
-	//Bob
-	struct submission {
-		string title;
+	//For consistancy with the createSubmition, I've moved the
+	//fields around.
+	struct Submission {
 		string mirror_link;
+		string title;
+		//Assuming tag is the key value.
+		string tag;
 	}
 
-	//Bob
-	Link[] public Link;
+	Submission[] public submissions;
 	
-	//Bob
 	function _createLink() {};
 
-<<<<<<< HEAD
-	//Bob
-	//createSubmition (string URI, ..., name, tag) {}
+	//Do you want the submission to immediately be appended to the list?
+	//It seems like each time when the submission is created, we also need to create a key, which maps to the
+	//appended submission.
+	//And what's the tag for?
+	//createSubmition (string URI, name, tag) {
+	//	Submission new_submission = Submission(URI, name, tag)
+	//	This is where new_submission is "binded" to the tag.
+	//	get_submission[tag] = new_submission
+	//
+	//}
 	
-	//Bob
 	//getIndex(tag, #){}
 	
-	//Bob
 	//getIndexList(tag => List of tags, #)
-=======
->>>>>>> 222479c8bcb496c6d7c8da65c3fa75bd38a5a4f8
 }
