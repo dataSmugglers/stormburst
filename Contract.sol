@@ -2,23 +2,23 @@ pragma solidity ^0.4.18;
 
 contract StormBurst {
 
-	mapping (string => Submission[]) getSubmission;
+	mapping (bytes24 => Submission[] ) public getSubmission;
 
 	struct Submission {
 		string mirrorLink;
 		string title;
-		string tag;
+		bytes24 tag;
 	}
 
 	Submission[] public submissions;
 
-	function createSubmission(string _mirrorLink, string _title, string _tag ) public {
-		getSubmissions[_tag].push(Submission(_mirrorLink, _title, _tag));
+	function createSubmission(string _mirrorLink, string _title, bytes24 _tag ) public {
+		getSubmission[_tag].push(Submission(_mirrorLink, _title, _tag));
 	}
 
 
 
-	function getArraySubmission(string _tag) public view returns(Submission[]) {
+	function getArraySubmission(bytes24 _tag) public view returns(Submission[]) {
 		return (getSubmission[_tag]);
 
 	}
