@@ -1,9 +1,9 @@
-pragma solidity ^0.4.19;
+pragma solidity ^0.4.18;
 
 contract StormBurst {
 
-    // mapping (string => Submission) get_submission;
-    
+	mapping (string => Submission[]) getSubmission;
+
 	struct Submission {
 		string mirrorLink;
 		string title;
@@ -11,16 +11,17 @@ contract StormBurst {
 	}
 
 	Submission[] public submissions;
-	
+
 	function createSubmission(string _mirrorLink, string _title, string _tag ) public {
 		submissions.push(Submission(_mirrorLink, _title, _tag));
 	}
 
-	//function getSubmission() {
-	//}
 
 
+	function getArraySubmission(string _tag) public view returns(Submission[]) {
+		return (getSubmission[_tag]);
 
+	}
 	//createSubmition (string URI, name, tag) {
 	//	Submission new_submission = Submission(URI, name, tag) {
 	//	This is where new_submission is "binded" to the tag.
