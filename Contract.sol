@@ -17,6 +17,14 @@ contract StormBurst {
 		bytes32 tag;
 	}
 
+	Submission[] public submissions;
+
+	function createSubmission(string _mirrorLink, string _title, bytes24 _tag ) public {
+
+		getSubmission[_tag].push(Submission(_mirrorLink, _title, _tag));
+
+	}
+
 	function createSubmission(string _mirrorLink, string _title, string _tag) public {
         saveTag(_tag);
 		bytes32 correctTagType = stringToBytes32(_tag);
