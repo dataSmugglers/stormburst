@@ -13,7 +13,7 @@ contract StormBurst {
 	Submission[] public submissions;
 
 	function createSubmission(string _mirrorLink, string _title, string _tag ) public {
-		submissions.push(Submission(_mirrorLink, _title, _tag));
+		getSubmissions[_tag].push(Submission(_mirrorLink, _title, _tag));
 	}
 
 
