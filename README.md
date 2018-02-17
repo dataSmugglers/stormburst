@@ -1,2 +1,0 @@
-# stormburst
-# Devs: Sal Camara
