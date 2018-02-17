@@ -13,4 +13,13 @@ contract StormBurst {
 	
 	//Bob
 	function _createLink() {};
+
+	//Bob
+	//createSubmition (string URI, ..., name, tag) {}
+	
+	//Bob
+	//getIndex(tag, #){}
+	
+	//Bob
+	//getIndexList(tag => List of tags, #)
 }
