@@ -22,11 +22,6 @@ contract StormBurst {
 		return (getSubmission[_tag]);
 
 	}
-	//createSubmition (string URI, name, tag) {
-	//	Submission new_submission = Submission(URI, name, tag) {
-	//	This is where new_submission is "binded" to the tag.
-	//	get_submission[tag] = new_submission
-	//}
 
 	//getIndex(tag, #){}
 
