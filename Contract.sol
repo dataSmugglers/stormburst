@@ -3,9 +3,9 @@ pragma solidity ^0.4.19;
 contract StormBurst {
 
 	//Bob
-	struct Link {
+	struct submission {
 		string title;
-		string hyper_link;
+		string mirror_link;
 	}
 
 	//Bob
