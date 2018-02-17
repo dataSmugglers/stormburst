@@ -33,7 +33,7 @@ contract StormBurst {
 	/*
 		Self explanatory, self documenting code at its finest.
 	*/
-    function saveTag(string _tag){
+    function saveTag(string _tag) private{
         tag.push(_tag);
     }
 	
@@ -46,7 +46,7 @@ contract StormBurst {
     }
 	
 	// Source: https://ethereum.stackexchange.com/questions/9142/how-to-convert-a-string-to-bytes32
-	function stringToBytes32(string memory source) returns (bytes32 result) {
+	function stringToBytes32(string memory source) private pure returns (bytes32 result) {
 		bytes memory tempEmptyStringTest = bytes(source);
 		if (tempEmptyStringTest.length == 0) {
 			return 0x0;
