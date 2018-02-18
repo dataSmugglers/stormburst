@@ -46,17 +46,26 @@ cd stormburst
 truffle compile
 ```
 
+Start up Ganache
+```bash
+ganache-cli
+```
+
 ## Running the tests
+
+Next we can perform our migration to the test network
+```bash
+truffle migrate --network development
+```
 
 Run:
 ```bash
 truffle test
 ```
 
-Next we can perform our migration
-```bash
-truffle migrate network --live
-```
+You should now be able to visit the site at http://localhost:8080
+
+(Be sure to point MetaMask at the ganache test network.)
 
 ## Built With
 
