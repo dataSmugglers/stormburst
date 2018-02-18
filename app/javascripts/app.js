@@ -1,5 +1,6 @@
 // Import the page's CSS. Webpack will know what to do with it.
 import "../stylesheets/app.css";
+import "../assets/head.png";
 
 // Import libraries we need.
 import { default as Web3 } from 'web3';
@@ -14,34 +15,18 @@ var StormBurst = contract(stormburst_artifacts);
 // The following code is simple to show off interacting with your contracts.
 // As your needs grow you will likely need to change its form and structure.
 // For application bootstrapping, check out window.addEventListener below.
-var submissionsByTag;
-var accounts;
-var account;
+
 
 window.App = {
+  submissionsByTag : {},
+  tags: [],
   start: function() {
     var self = this;
 
     // Bootstrap the MetaCoin abstraction for Use.
     StormBurst.setProvider(web3.currentProvider);
 
-    // Get the initial account balance so it can be displayed.
-    web3.eth.getAccounts(function(err, accs) {
-      if (err != null) {
-        alert("There was an error fetching your accounts.");
-        return;
-      }
-
-      if (accs.length == 0) {
-        alert("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
-        return;
-      }
-
-      accounts = accs;
-      account = accounts[0];
-
-      self.refreshSubmissions();
-    });
+    self.refreshSubmissions();
   },
 
   setStatus: function(message) {
@@ -51,40 +36,42 @@ window.App = {
 
   refreshSubmissions: function() {
     var self = this;
-
+    var tagCount;
     var sb;
     StormBurst.deployed().then(function(instance) {
       sb = instance;
-      return sb.getSubmissions.call(account, {from: account});
+      return sb.getTagCount.call().then(function(count) {return count});
     }).then(function(value) {
-      var balance_element = document.getElementById("balance");
-      balance_element.innerHTML = value.valueOf();
+      tagCount = value
+      for(var idx = 0; idx < tagCount; idx++ ) {
+        var tagName = sb.getTag.call(idx).then(name => {
+          self.tags.push(name);
+        }).catch(function(e) {
+          console.log(e);
+          self.setStatus("Error getting tag; see log.");
+        });
+      }
+      self.tags.forEach(tag => {
+        self.submissionsByTag[tag] = [];
+        sb.submissionsByTagCount.call(tag).then(count => {
+          for(idx = 0; idx < count; idx++ ) {
+            var submission = sb.submissionByTag.call(tag, idx).then(sub => {
+              self.submissionsByTag[tag].push(sub);
+            }).catch(function(e) {
+              console.log(e);
+              self.setStatus("Error getting submission; see log.");
+            });
+          }
+        }).catch(function(e) {
+          console.log(e);
+          self.setStatus("Error getting submission count for tag; see log.");
+        });
+      });
     }).catch(function(e) {
       console.log(e);
-      self.setStatus("Error getting balance; see log.");
+      self.setStatus("Error getting tag count; see log.");
     });
   },
-
-  sendCoin: function() {
-    var self = this;
-
-    var amount = parseInt(document.getElementById("amount").value);
-    var receiver = document.getElementById("receiver").value;
-
-    this.setStatus("Initiating transaction... (please wait)");
-
-    var meta;
-    MetaCoin.deployed().then(function(instance) {
-      meta = instance;
-      return meta.sendCoin(receiver, amount, {from: account});
-    }).then(function() {
-      self.setStatus("Transaction complete!");
-      self.refreshBalance();
-    }).catch(function(e) {
-      console.log(e);
-      self.setStatus("Error sending coin; see log.");
-    });
-  }
 };
 
 window.addEventListener('load', function() {
@@ -94,9 +81,9 @@ window.addEventListener('load', function() {
     // Use Mist/MetaMask's provider
     window.web3 = new Web3(web3.currentProvider);
   } else {
-    console.warn("No web3 detected. Falling back to http://127.0.0.1:9545. You should remove this fallback when you deploy live, as it's inherently insecure. Consider switching to Metamask for development. More info here: http://truffleframework.com/tutorials/truffle-and-metamask");
+    console.warn("No web3 detected. Falling back to http://127.0.0.1:7545. You should remove this fallback when you deploy live, as it's inherently insecure. Consider switching to Metamask for development. More info here: http://truffleframework.com/tutorials/truffle-and-metamask");
     // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-    window.web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:9545"));
+    window.web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:7545"));
   }
 
   App.start();
