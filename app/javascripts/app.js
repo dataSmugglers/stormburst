@@ -94,6 +94,15 @@ window.App = {
 
     this.setStatus("Initiating transaction... (please wait)");
 
+    if ([mirrorLink, title, tag].includes("")) {
+      this.setStatus("Invalid transaction data!!!");
+      return;
+    }
+
+    if (mirrorLink.match(/^magnet:\?xt=urn(\:btih\:)?[a-z0-9]{20,50}$/i) == null) {
+      this.setStatus("Invalid magnet link!!!");
+      return;  
+    }
     var sb;
     StormBurst.deployed().then(function(instance) {
       sb = instance;
@@ -108,48 +117,58 @@ window.App = {
       self.setStatus("Error sending Magnet Link; see log.");
     });
   },
-	
-	  /*
-		  The function below listens for the Go button, in the index.html.
-	  */
-	  goSearch: function() {
-      var self = this;
-      var tag = document.getElementById("tagSearch").value.toLowerCase();
-      var masterList = [];
-      self.tags.forEach(function(targetTag) { 
-        if (targetTag.toLowerCase().includes(tag)) { 
-          masterList = masterList.concat(self.submissionsByTag[targetTag]);
-        }
-      });
 
-      if(masterList.length == 0){
-        self.setStatus("There were no matches for that tag. Sorry.");
+  goSearch: function() {
+    var self = this;
+    var tag = document.getElementById("tagSearch").value.toLowerCase();
+    var masterList = [];
+    self.tags.forEach(function(targetTag) { 
+      if (targetTag.toLowerCase().includes(tag)) { 
+        masterList = masterList.concat(self.submissionsByTag[targetTag]);
       }
-      else{
-        buildTable(masterList);
-      }
-	  }
+    });
+
+    if(masterList.length == 0){
+      self.setStatus("There were no matches for that tag. Sorry.");
+    }
+    else{
+      buildTable(masterList);
+    }
+  }
 };
 
 function buildTable(masterList){
-    var div,table,tr,td,tn;
-    div = document.getElementById("results");
+    var body,table,tr,td,tn,th;
+    body = document.getElementById("results");
     table = document.createElement("table");
     console.log(masterList);
-    masterList.forEach(row => {
-        tr = document.createElement("tr");
-        row.forEach(col => {
-            td = document.createElement("td");
-            tn = document.createTextNode(col);
-            td.appendChild(tn);
-            tr.appendChild(td);
-        });
-        table.appendChild(tr);
-    });
-    while (div.firstChild) {
-      div.removeChild(div.firstChild);
+
+    while (body.firstChild) {
+      body.removeChild(body.firstChild);
     }
-    div.appendChild(table);
+
+    masterList.forEach(row => {
+      tr = document.createElement('tr');
+      th = document.createElement('th');
+      th.scope = "row";
+      tr.appendChild(th);
+      for(var index = 2; index >= 0; index--) {
+        var col = row[index];  
+        td = document.createElement("td");
+
+        tn = document.createTextNode(col);
+        if (index == 0) {
+          var a = document.createElement("a");
+          a.href=col;
+          a.appendChild(tn);
+          td.appendChild(a);
+        } else {
+          td.appendChild(tn);
+        } 
+        tr.appendChild(td);
+      };
+      body.appendChild(tr);
+    });
 }
 
 window.addEventListener('load', function() {
@@ -158,6 +177,9 @@ window.addEventListener('load', function() {
     console.warn("Using web3 detected from external source.")
     // Use Mist/MetaMask's provider
     window.web3 = new Web3(web3.currentProvider);
+  } else {
+    console.warn("No web3 detected. Falling back to http://127.0.0.1:8545. You should remove this fallback when you deploy live, as it's inherently insecure. Consider switching to Metamask for development. More info here: http://truffleframework.com/tutorials/truffle-and-metamask");
+    window.web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
   }
 
   App.start();

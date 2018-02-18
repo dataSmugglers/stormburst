@@ -15,8 +15,12 @@ contract StormBurst {
 	}
 
 	function createSubmission(string magnetLink, string title, string tag ) public returns(bool success) {
+		require(!StringUtils.equal(magnetLink, ""));
+		require(!StringUtils.equal(title, ""));
+		require(!StringUtils.equal(tag, ""));
+
 		uint tagIdx = 0;
-		while (tagIdx < tagCount && (!StringUtils.equal(tagTable[tagIdx],tag) || StringUtils.equal(tagTable[tagIdx], ""))) {
+		while (tagIdx < tagCount && !StringUtils.equal(tagTable[tagIdx],tag)) {
 			tagIdx++;
 		}
 
@@ -50,6 +54,10 @@ contract StormBurst {
 	}
 
 	function _stringToBytes32(string memory source) private pure returns (bytes32 result) {
+		bytes memory tempEmptyStringTest = bytes(source);
+		if (tempEmptyStringTest.length == 0) {
+			return 0x0;
+		}
 		assembly {
 			result := mload(add(source, 32))
 		}
