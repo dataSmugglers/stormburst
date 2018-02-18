@@ -62,29 +62,27 @@ window.App = {
     }).then(function(value) {
       tagCount = value
       for(var idx = 0; idx < tagCount; idx++ ) {
-        var tagName = sb.getTag.call(idx).then(name => {
-          self.tags.push(name);
+        var tagName = sb.getTag.call(idx).then(tag => {
+          self.tags.push(tag);
+          self.submissionsByTag[tag] = [];
+          sb.submissionsByTagCount.call(tag).then(count => {
+            for(idx = 0; idx < count; idx++ ) {
+              var submission = sb.submissionByTag.call(tag, idx).then(sub => {
+                self.submissionsByTag[tag].push(sub);
+              }).catch(function(e) {
+                console.log(e);
+                self.setStatus("Error getting submission; see log.");
+              });
+            }
+          }).catch(function(e) {
+            console.log(e);
+            self.setStatus("Error getting submission count for tag; see log.");
+          });
         }).catch(function(e) {
           console.log(e);
           self.setStatus("Error getting tag; see log.");
         });
       }
-      self.tags.forEach(tag => {
-        self.submissionsByTag[tag] = [];
-        sb.submissionsByTagCount.call(tag).then(count => {
-          for(idx = 0; idx < count; idx++ ) {
-            var submission = sb.submissionByTag.call(tag, idx).then(sub => {
-              self.submissionsByTag[tag].push(sub);
-            }).catch(function(e) {
-              console.log(e);
-              self.setStatus("Error getting submission; see log.");
-            });
-          }
-        }).catch(function(e) {
-          console.log(e);
-          self.setStatus("Error getting submission count for tag; see log.");
-        });
-      });
     }).catch(function(e) {
       console.log(e);
       self.setStatus("Error getting tag count; see log.");
@@ -100,10 +98,12 @@ window.App = {
     StormBurst.deployed().then(function(instance) {
       sb = instance;
       console.log(mirrorLink, title, tag);
-      return sb.createSubmission(mirrorLink, title, tag, {from: self.account});
+      return sb.createSubmission(mirrorLink, title, tag, {from: self.account}).then(function() {
+        self.refreshSubmissions();
+      });
     }).then(function() {
       self.setStatus("Transaction complete!");
-      self.refreshSubmissions();
+      
     }).catch(function(e) {
       console.log(e);
       self.setStatus("Error sending Magnet Link; see log.");
