@@ -91,30 +91,22 @@ window.App = {
     });
   },
 
-/*
-	Please peer review this portion, I've just replaced amount and receiver with
-	title and tag, this probably wasn't intended.-Bob
-	
-	
-*/
   sendMagnet: function(mirrorLink, title, tag) {
     var self = this;
-
-    var title = parseInt(document.getElementById("titleSearchInput").value);
-    var tag = document.getElementById("tagInput").value;
 
     this.setStatus("Initiating transaction... (please wait)");
 
     var sb;
     StormBurst.deployed().then(function(instance) {
       sb = instance;
+      console.log(mirrorLink, title, tag);
       return sb.createSubmission(mirrorLink, title, tag, {from: self.account});
     }).then(function() {
       self.setStatus("Transaction complete!");
       self.refreshSubmissions();
     }).catch(function(e) {
       console.log(e);
-      self.setStatus("Error sending coin; see log.");
+      self.setStatus("Error sending Magnet Link; see log.");
     });
   },
 	

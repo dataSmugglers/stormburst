@@ -16,12 +16,12 @@ contract StormBurst {
 
 	function createSubmission(string mirrorLink, string title, string tag ) public returns(bool success) {
 		uint tagIdx = 0;
-		while (tagIdx < tagCount && !StringUtils.equal(tagTable[tagIdx],tag)) {
+		while (tagIdx < tagCount && (!StringUtils.equal(tagTable[tagIdx],tag) || StringUtils.equal(tagTable[tagIdx], ""))) {
 			tagIdx++;
 		}
 
 		if (tagIdx == tagCount) {
-			tagTable[tagIdx] = tag;
+			tagTable[tagCount] = tag;
 			tagCount++;
 		}
 
