@@ -72,6 +72,40 @@ window.App = {
       self.setStatus("Error getting tag count; see log.");
     });
   },
+
+/*
+	Please peer review this portion, I've just replaced amount and receiver with
+	title and tag, this probably wasn't intended.-Bob
+	
+	
+*/
+  sendMagnet: () => {
+    var self = this;
+
+    var title = parseInt(document.getElementById("titleSearchInput").value);
+    var tag = document.getElementById("tagInput").value;
+
+    this.setStatus("Initiating transaction... (please wait)");
+
+    var meta;
+    MetaCoin.deployed().then(function(instance) {
+      meta = instance;
+      return meta.sendCoin(title, tag, {from: account});
+    }).then(function() {
+      self.setStatus("Transaction complete!");
+      self.refreshBalance();
+    }).catch(function(e) {
+      console.log(e);
+      self.setStatus("Error sending coin; see log.");
+    });
+  },
+	
+	/*
+		The function below listens for the Go button, in the index.html.
+	*/
+	goSearch: () => {
+		console.log("Go button was clicked.")
+	}
 };
 
 window.addEventListener('load', function() {

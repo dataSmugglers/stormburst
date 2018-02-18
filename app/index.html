@@ -4,9 +4,7 @@
 <head>
 	<title id="Title">MetaCoin - Truffle Webpack Demo w/ Frontend</title>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="./app.js"></script>
+	<script src="./javascripts/app.js"></script>
 </head>
 <body>
 	<a href="https://github.com/dataSmugglers/stormburst">
@@ -15,6 +13,7 @@
 	<center>
 		<h4>Search</h4>
 	</center>
+<<<<<<< HEAD
 	<br>
 	<center>
 		<h4>Submit</h4>
@@ -25,11 +24,31 @@
 		<!--There might be a need to check the onclick attr.-->
 		<button id="Submit" onclick="App.submitMagent()">Submit</button>
 	</center>
+=======
+  <br>
+	<form>
+		<center>
+			<label id="titleSearchLabel" for="amount">Amount:</label><input type="text" id="titleSearchInput" placeholder="e.g., 95"></input>
+			<label id="tagSearchLabel" for="receiver">To Address:</label><input type="text" id="tagInput" placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"></input>
+			<!--There might be a need to check the onclick attr.-->
+			<button type="submit" id="goButton" onclick="App.goSearch()">Send MetaCoin</button>
+		</center>
+	</form>
+	<br><br>
+	<form>	
+		<center>
+			<h4>Submit</h4>
+			<input type="text" id="magnetTxt" placeholder="Magnet"></input>
+			<input type="text" id="titleTxt" placeholder="Title"></input>
+			<input type="text" id="tagTxt" placeholder="Tag"></input>
+			<br>
+			<!--There might be a need to check the onclick attr.-->
+			<button type="submit" id="Submit" onclick="App.sendMagnet()">Submit</button>
+		</center>
+	</form>
+>>>>>>> 80ad3a95656fe01f34870c403fd6c9c6dced0c66
 	<span id="status"></span>
 	<br>
 	<span class="hint"><strong>Hint:</strong> open the browser developer console to view any errors and warnings.</span>
 </body>
-<style>
-	
-</style>
 </html>
