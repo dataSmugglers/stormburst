@@ -4,6 +4,8 @@ The *immutable* and decentralized torrent network on the Ethereum blockchain.
 
 ![logo](https://i.imgur.com/aIIdgnk.png)
 
+>"A farm of your own is better, even if small. Everyone's someone at home." - Hávamál st. 46
+
 ## How It Works
 
 * Searches are free.
@@ -13,13 +15,13 @@ The *immutable* and decentralized torrent network on the Ethereum blockchain.
 
 ## Getting Started
 
-These instructions allow you to set up your own torrent community dApp, using ethereums smart contracts. You can choose to simply clone this repository and run your own proxy version of Stormburst. You may also choose to customize it to you liking and redeploy (since submissions are tag based it currently works great for targeted communities)
+These instructions allow you to set up your own torrent community *dApp*, using ethereums smart contracts. You can choose to simply clone this repository and run your own proxy version of Stormburst. You may also choose to customize it to you liking and redeploy (since submissions are tag based it currently works great for targeted communities)
 
 ### Prerequisites / Dependencies
 
 You will need, nodejs 5+, Truffle, ganache-cli, and  MetaMask. [Truffle](https://github.com/trufflesuite/truffle) is our build/test/deploy tool (this what nodejs is required for). [Ganache](https://github.com/trufflesuite/ganache-cli) is responsible for setting up a ethereum test network. We can issue ourselves test coins and run test transactions. Lastly [MetaMask](https://metamask.io/) will help us to integrate our wallet into our *dApp*.
 
-*(On Ubuntu)**
+*(On Ubuntu)*
 First install node:
 
 ```bash
@@ -71,10 +73,8 @@ Feel free to submit a PR and we'll review it! :)
 * **Dong Lee** - Inital work - [dlee67](https://github.com/dlee67)
 * **Luke Smith** - Initial work - [lsmith-zenoscave](https://github.com/lsmith-zenoscave)
 
-## License
+## License / Disclaimer
 
 This project is licensed under the 2-clause BSD license. (See LICENSE.md)
-
-## Disclaimer
 
 > This project has been developed for academic purposes only.  We do not condone the sharing of copyrighted materials. Use at your own risk; alpha stage software. We will not be held responsible for the misuse of the software.
