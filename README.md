@@ -17,7 +17,6 @@ First install node:
 
 ```
 sudo apt install nodejs
-
 ```
 
 Install your node modules:
