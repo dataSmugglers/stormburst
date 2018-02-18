@@ -67,11 +67,11 @@ Feel free to submit a PR and we'll review it! :)
 
 ## License
 
-This project is licensed under the 2-clause BSD license License.
+This project is licensed under the 2-clause BSD license License. (See LICENSE.md)
 
 ## Disclaimer
 
 * This project has been developed for academic purposes only.
 * We do not condone the sharing of copyrighted materials.
-* There is not warranty of any kind included with this software - use at your own risk (alpha level software)
+* Use at your own risk - alpha stage software.
 * We will not be held responsible for the misuse of the software.
