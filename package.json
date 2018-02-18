@@ -7,8 +7,13 @@
     "build": "webpack",
     "dev": "webpack-dev-server"
   },
-  "author": "Luke Smith <lsmith@zenoscave.com>",
-  "license": "MIT",
+  "author": [
+    "Sal Camara [https://github.com/sal2993]",
+    "hexphase [https://github.com/hexphase]",
+    "Dong Lee [https://github.com/dlee67]",
+    "Luke Smith [https://github.com/lsmith-zenoscave/]"
+  ],
+  "license": "BSD",
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-core": "^6.22.1",
