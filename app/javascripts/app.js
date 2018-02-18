@@ -92,7 +92,7 @@ window.App = {
   sendMagnet: function(mirrorLink, title, tag) {
     var self = this;
 
-	this.setStatus("Initiating transaction... (please wait)");
+    this.setStatus("Initiating transaction... (please wait)");
 
     var sb;
     StormBurst.deployed().then(function(instance) {
@@ -102,8 +102,7 @@ window.App = {
         self.refreshSubmissions();
       });
     }).then(function() {
-      self.setStatus("Transaction complete!");
-      
+      self.setStatus("Transaction complete!"); 
     }).catch(function(e) {
       console.log(e);
       self.setStatus("Error sending Magnet Link; see log.");
