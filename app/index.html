@@ -9,17 +9,14 @@
 <body>
   <center>
 	<a href="https://github.com/dataSmugglers/stormburst">
-			<img src="./head.png">
+		<img src="./head.png">
 	</a>
-		<h4>Search</h4>
+
 	</center>
   <br>
 	<form>
 		<center>
-			<label>Tag:</label><input type="text" id="tagSearch" placeholder="e.g., Debian"></input>
-			<label>Search:</label><input type="text" id="titleSearch" placeholder="e.g., Fedora22.iso "></input>
-			<!--There might be a need to check the onclick attr.-->
-			<br>
+		  <input type="text" id="tagSearch" placeholder="Search Tags"></input><br/>
 			<button type="button" id="goButton" onclick="App.goSearch()">Search</button>
 		</center>
 	</form>
@@ -39,6 +36,8 @@
   <div id="results">
   </div>
 	<br>
-	<span class="hint"><strong>Hint:</strong> open the browser developer console to view any errors and warnings.</span>
+	<center>
+		<span class="hint"><strong>Hint:</strong> open the browser developer console to view any errors and warnings.</span>	
+	</center>
 </body>
 </html>

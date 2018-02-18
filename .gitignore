@@ -1,4 +1,5 @@
 node_modules/
 build/
 coverage/
+coverageEnv/
 coverage.json
