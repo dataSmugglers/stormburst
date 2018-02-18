@@ -2,25 +2,25 @@
 <html>
 
 <head>
-	<title id="Title">MetaCoin - Truffle Webpack Demo w/ Frontend</title>
+	<title id="Title"> - Stormburst -</title>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 	<script src="./app.js"></script>
 </head>
 <body>
   <center>
 	<a href="https://github.com/dataSmugglers/stormburst">
-			<img src="./assets/head.png">
+			<img src="./app/assets/head.png">
 	</a>
 		<h4>Search</h4>
 	</center>
   <br>
 	<form>
 		<center>
-			<label id="tagSearch" for="amount">Tag:</label><input type="text" id="tagSearch" placeholder="e.g., Debian"></input>
-			<label id="titleSearch" for="receiver">Search:</label><input type="text" id="titleSearch" placeholder="e.g., Fedora22.iso "></input>
+			<label>Tag:</label><input type="text" id="tagSearch" placeholder="e.g., Debian"></input>
+			<label>Search:</label><input type="text" id="titleSearch" placeholder="e.g., Fedora22.iso "></input>
 			<!--There might be a need to check the onclick attr.-->
 			<br>
-			<button type="submit" id="goButton" onclick="App.goSearch()">Search</button>
+			<button type="button" id="goButton" onclick="App.goSearch()">Search</button>
 		</center>
 	</form>
 	<br><br>
@@ -36,6 +36,8 @@
 		</center>
 	</form>
 	<span id="status"></span>
+  <div id="results">
+  </div>
 	<br>
 	<span class="hint"><strong>Hint:</strong> open the browser developer console to view any errors and warnings.</span>
 </body>
