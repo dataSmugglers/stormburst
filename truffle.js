@@ -10,10 +10,10 @@ module.exports = {
     },
     rinkeby: {
       host: "localhost",
+      from: "0x8cD3D592018Dbda0641Cb7CA965cD2f1221b62A3",
       port: 8545,
-      from: "0x8cd3d592018dbda0641cb7ca965cd2f1221b62a3",
       network_id: 4,
-      gas: 4612388
+      gas: 7000000
     }
   }
 }
