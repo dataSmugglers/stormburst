@@ -180,7 +180,7 @@ window.addEventListener('load', function() {
   } else {
     console.warn("No web3 detected. Falling back to http://127.0.0.1:8545. You should remove this fallback when you deploy live, as it's inherently insecure. Consider switching to Metamask for development. More info here: http://truffleframework.com/tutorials/truffle-and-metamask");
     window.web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
-  }
+  } 
 
   App.start();
 
