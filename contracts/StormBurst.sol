@@ -9,12 +9,12 @@ contract StormBurst {
 	uint public tagCount;
 
 	struct Submission {
-		string mirrorLink;
+		string magnetLink;
 		string title;
 		string tag;
 	}
 
-	function createSubmission(string mirrorLink, string title, string tag ) public returns(bool success) {
+	function createSubmission(string magnetLink, string title, string tag ) public returns(bool success) {
 		uint tagIdx = 0;
 		while (tagIdx < tagCount && (!StringUtils.equal(tagTable[tagIdx],tag) || StringUtils.equal(tagTable[tagIdx], ""))) {
 			tagIdx++;
@@ -26,7 +26,7 @@ contract StormBurst {
 		}
 
 		bytes32 tagBytes = _stringToBytes32(tag);
-		submissions[tagBytes].push(Submission(mirrorLink, title, tag));
+		submissions[tagBytes].push(Submission(magnetLink, title, tag));
 		return true;
 	}
 
