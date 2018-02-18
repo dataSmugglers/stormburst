@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title id="Title">MetaCoin - Truffle Webpack Demo w/ Frontend</title>
+	<title id="Title"> - Stormburst -</title>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 	<script src="./app.js"></script>
 </head>
@@ -16,10 +16,11 @@
   <br>
 	<form>
 		<center>
-			<label id="titleSearchLabel" for="amount">Amount:</label><input type="text" id="titleSearchInput" placeholder="e.g., 95"></input>
-			<label id="tagSearchLabel" for="receiver">To Address:</label><input type="text" id="tagInput" placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"></input>
+			<label>Tag:</label><input type="text" id="tagSearch" placeholder="e.g., Debian"></input>
+			<label>Search:</label><input type="text" id="titleSearch" placeholder="e.g., Fedora22.iso "></input>
 			<!--There might be a need to check the onclick attr.-->
-			<button type="submit" id="goButton" onclick="App.goSearch()">Send MetaCoin</button>
+			<br>
+			<button type="button" id="goButton" onclick="App.goSearch()">Search</button>
 		</center>
 	</form>
 	<br><br>
@@ -35,6 +36,8 @@
 		</center>
 	</form>
 	<span id="status"></span>
+  <div id="results">
+  </div>
 	<br>
 	<span class="hint"><strong>Hint:</strong> open the browser developer console to view any errors and warnings.</span>
 </body>

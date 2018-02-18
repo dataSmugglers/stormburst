@@ -109,13 +109,42 @@ window.App = {
     });
   },
 	
-	/*
-		The function below listens for the Go button, in the index.html.
-	*/
-	goSearch: () => {
-		console.log("Go button was clicked.")
-	}
+	  /*
+		  The function below listens for the Go button, in the index.html.
+	  */
+	  goSearch: function(tag, title) {
+        var self = this;
+        tag = document.getElementById("tagSearch").value.toLowerCase();
+        title = document.getElementById("titleSearch").value.toLowerCase();
+        var masterList = [];
+        self.tags.forEach(targetTag => { if(targetTag.includes(tag)){masterList = masterList.concat(self.submissionsByTag[targetTag]);} });
+
+        if(masterList.length == 0){
+            self.setStatus("There were no matches for that tag. Sorry.");
+        }
+        else{
+            buildTable(masterList);
+        }
+	  }
 };
+
+function buildTable(masterList){
+    var div,table,tr,td,tn;
+    div = document.getElementById("results");
+    table = document.createElement("table");
+    console.log(masterList);
+    masterList.forEach(row => {
+        tr = document.createElement("tr");
+        row.forEach(col => {
+            td = document.createElement("td");
+            tn = document.createTextNode(col);
+            td.appendChild(tn);
+            tr.appendChild(td);
+        });
+        table.appendChild(tr);
+    });
+    div.appendChild(table);
+}
 
 window.addEventListener('load', function() {
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)
