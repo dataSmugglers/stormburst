@@ -112,19 +112,22 @@ window.App = {
 	  /*
 		  The function below listens for the Go button, in the index.html.
 	  */
-	  goSearch: function(tag, title) {
-        var self = this;
-        tag = document.getElementById("tagSearch").value.toLowerCase();
-        title = document.getElementById("titleSearch").value.toLowerCase();
-        var masterList = [];
-        self.tags.forEach(targetTag => { if(targetTag.includes(tag)){masterList = masterList.concat(self.submissionsByTag[targetTag]);} });
+	  goSearch: function() {
+      var self = this;
+      var tag = document.getElementById("tagSearch").value.toLowerCase();
+      var masterList = [];
+      self.tags.forEach(function(targetTag) { 
+        if (targetTag.toLowerCase().includes(tag)) { 
+          masterList = masterList.concat(self.submissionsByTag[targetTag]);
+        }
+      });
 
-        if(masterList.length == 0){
-            self.setStatus("There were no matches for that tag. Sorry.");
-        }
-        else{
-            buildTable(masterList);
-        }
+      if(masterList.length == 0){
+        self.setStatus("There were no matches for that tag. Sorry.");
+      }
+      else{
+        buildTable(masterList);
+      }
 	  }
 };
 
