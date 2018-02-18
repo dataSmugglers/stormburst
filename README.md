@@ -4,6 +4,13 @@ The immutable and decentralized torrent network on the Ethereum blockchain.
 
 ![logo](https://i.imgur.com/aIIdgnk.png)
 
+## How It Works
+
+* Searches are free.
+* If you wish to post a magnet link to the network, simply pay via MetaMask.
+* Posters include the link, a title for the post, and a tag (e.g. #linux)
+* You can search by tag, or simply choose to browse.
+
 ## Getting Started
 
 These instructions allow you to set up your own torrent community dApp, using ethereums smart contracts. You can choose to simply clone this repository and run your own proxy version of Stormburst. You may also choose to customize it to you liking and redeploy (since submissions are tag based it currently works great for targeted communities)
