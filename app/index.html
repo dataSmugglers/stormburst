@@ -31,7 +31,7 @@
 			<input type="text" id="tagTxt" placeholder="Tag"></input>
 			<br>
 			<!--There might be a need to check the onclick attr.-->
-			<button type="submit" id="Submit" onclick="App.sendMagnet(document.getElementById('magnetTxt'), document.getElementById('titleTxt'), document.getElementById('tagTxt'))">Submit</button>
+			<button type="submit" id="Submit" onclick="App.sendMagnet(document.getElementById('magnetTxt').value, document.getElementById('titleTxt').value, document.getElementById('tagTxt').value)">Submit</button>
 		</center>
 	</form>
 	<span id="status"></span>
