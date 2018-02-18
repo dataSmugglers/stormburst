@@ -46,7 +46,7 @@ contract StormBurst {
 	function submissionByTag(string tagIn, uint index) public view returns(string link, string title, string tag) {
 		bytes32 tagBytes = _stringToBytes32(tagIn);
 	  Submission storage rval = submissions[tagBytes][index];
-		return (rval.mirrorLink, rval.title, rval.tag);
+		return (rval.magnetLink, rval.title, rval.tag);
 	}
 
 	function _stringToBytes32(string memory source) private pure returns (bytes32 result) {
