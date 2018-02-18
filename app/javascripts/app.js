@@ -146,6 +146,9 @@ function buildTable(masterList){
         });
         table.appendChild(tr);
     });
+    while (div.firstChild) {
+      div.removeChild(div.firstChild);
+    }
     div.appendChild(table);
 }
 
