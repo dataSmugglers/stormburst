@@ -24,20 +24,19 @@
 						</a>
 						<br>
 						<form>
+								<h4>Search</h4>
 								<input class="form-control" type="text" id="tagSearch" placeholder="Search Tags"></input>
+								<br>
 								<button class="btn btn-info" type="button" id="goButton" onclick="App.goSearch()">Search</button>
 							</form>
-						<br><br>
+						<br>
 						<form>	
-							<center>
-								<h4>Submit</h4>
-								<input class="form-control" type="text" id="magnetTxt" placeholder="Magnet"></input>
-								<input class="form-control" type="text" id="titleTxt" placeholder="Title"></input>
-								<input class="form-control" type="text" id="tagTxt" placeholder="Tag"></input>
-								<br>
-								<!--There might be a need to check the onclick attr.-->
-								<button class="btn btn-info" type="submit" id="Submit" onclick="App.sendMagnet(document.getElementById('magnetTxt').value, document.getElementById('titleTxt').value, document.getElementById('tagTxt').value)">Submit</button>
-							</center>
+							<h4>Submit</h4>
+							<input class="form-control" type="text" id="magnetTxt" placeholder="Magnet"></input>
+							<input class="form-control" type="text" id="titleTxt" placeholder="Title"></input>
+							<input class="form-control" type="text" id="tagTxt" placeholder="Tag"></input>
+							<br>
+   						<button class="btn btn-info" type="submit" id="Submit" onclick="App.sendMagnet(document.getElementById('magnetTxt').value, document.getElementById('titleTxt').value, document.getElementById('tagTxt').value)">Submit</button>
 						</form>
 						<span id="status"></span>
 
@@ -65,26 +64,3 @@
 
 </body>
 </html>
-
-
-<!--
-  <body>
-    <div class="container">
-      <div class="mt-1">
-        <h1>Sticky footer</h1>
-      </div>
-      <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.</p>
-      <p>Use <a href="../sticky-footer-navbar">the sticky footer with a fixed navbar</a> if need be, too.</p>
-    </div>
-
-    <footer class="footer">
-      <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
-      </div>
-    </footer>
-
-
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
-</html>
--->

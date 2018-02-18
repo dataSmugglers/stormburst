@@ -53,6 +53,5 @@ contract StormBurst {
 		assembly {
 			result := mload(add(source, 32))
 		}
-}
-
+	}
 }
