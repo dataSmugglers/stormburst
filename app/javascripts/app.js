@@ -1,6 +1,5 @@
 // Import the page's CSS. Webpack will know what to do with it.
 import "../stylesheets/app.css";
-import "../assets/head.png";
 
 // Import libraries we need.
 import { default as Web3 } from 'web3';
@@ -11,13 +10,14 @@ import stormburst_artifacts from '../../build/contracts/StormBurst.json'
 
 // MetaCoin is our usable abstraction, which we'll use through the code below.
 var StormBurst = contract(stormburst_artifacts);
-
+var accounts;
 // The following code is simple to show off interacting with your contracts.
 // As your needs grow you will likely need to change its form and structure.
 // For application bootstrapping, check out window.addEventListener below.
 
 
 window.App = {
+  account: "", 
   submissionsByTag : {},
   tags: [],
   start: function() {
@@ -25,8 +25,22 @@ window.App = {
 
     // Bootstrap the MetaCoin abstraction for Use.
     StormBurst.setProvider(web3.currentProvider);
+    web3.eth.getAccounts(function(err, accs) {
+      if (err != null) {
+        alert("There was an error fetching your accounts.");
+        return;
+      }
 
-    self.refreshSubmissions();
+      if (accs.length == 0) {
+        alert("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
+        return;
+      }
+
+      accounts = accs;
+      self.account = accounts[0];
+
+      self.refreshSubmissions();
+    });
   },
 
   setStatus: function(message) {
@@ -36,6 +50,10 @@ window.App = {
 
   refreshSubmissions: function() {
     var self = this;
+
+    self.tags = [];
+    self.submissionsByTag = {};
+
     var tagCount;
     var sb;
     StormBurst.deployed().then(function(instance) {
@@ -79,7 +97,7 @@ window.App = {
 	
 	
 */
-  sendMagnet: () => {
+  sendMagnet: function(mirrorLink, title, tag) {
     var self = this;
 
     var title = parseInt(document.getElementById("titleSearchInput").value);
@@ -87,13 +105,13 @@ window.App = {
 
     this.setStatus("Initiating transaction... (please wait)");
 
-    var meta;
-    MetaCoin.deployed().then(function(instance) {
-      meta = instance;
-      return meta.sendCoin(title, tag, {from: account});
+    var sb;
+    StormBurst.deployed().then(function(instance) {
+      sb = instance;
+      return sb.createSubmission(mirrorLink, title, tag, {from: self.account});
     }).then(function() {
       self.setStatus("Transaction complete!");
-      self.refreshBalance();
+      self.refreshSubmissions();
     }).catch(function(e) {
       console.log(e);
       self.setStatus("Error sending coin; see log.");

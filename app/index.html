@@ -4,7 +4,7 @@
 <head>
 	<title id="Title">MetaCoin - Truffle Webpack Demo w/ Frontend</title>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-	<script src="./javascripts/app.js"></script>
+	<script src="./app.js"></script>
 </head>
 <body>
 	<a href="https://github.com/dataSmugglers/stormburst">
@@ -31,7 +31,7 @@
 			<input type="text" id="tagTxt" placeholder="Tag"></input>
 			<br>
 			<!--There might be a need to check the onclick attr.-->
-			<button type="submit" id="Submit" onclick="App.sendMagnet()">Submit</button>
+			<button type="submit" id="Submit" onclick="App.sendMagnet(document.getElementById('magnetTxt'), document.getElementById('titleTxt'), document.getElementById('tagTxt'))">Submit</button>
 		</center>
 	</form>
 	<span id="status"></span>
